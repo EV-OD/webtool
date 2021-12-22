@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web Designer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="lib/codemirror.min.css" />
+    <script src="lib/codemirror.min.js"></script>
+    <script src="lib/mode/javascript.min.js"></script>
+    <script src="lib/mode/html.min.js"></script>
+    <script src="lib/mode/css.min.js"></script>
+    <script src="lib/mode/xml.min.js"></script>
+
+    <script src="lib/mode/show-hint.js"></script>
+
+    <link rel="stylesheet" href="lib/mode/show-hint.css">
+    <link rel="stylesheet" href="lib/mode/dracula.min.css">
+
+    <script src="lib/mode/js.hint.js"></script>
+    <script src="lib/mode/html.hint.js"></script>
+    <script src="lib/mode/css.hint.js"></script>
+
+    <script src="lib/mode/closebrack.js"></script>
+    <script src="lib/mode/closetag.js"></script>
+
+    <script defer src="script.js"></script>
+    <script defer src="utils.js"></script>
+
+  </head>
+  <body>
+    <div class="filebar bar">
+      <div class="files">
+        <button class="menu__type html" data-no="1" onclick="setTab(this)">
+          <svg
+            width="54"
+            height="54"
+            viewBox="0 0 54 54"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.9596 45.9017L6.16779 3.375H47.8322L44.0353 45.8949L26.9747 50.625L9.9596 45.9017Z"
+              fill="#E44F26"
+            />
+            <path
+              d="M27 47.0104L40.7869 43.1882L44.0302 6.85294H27V47.0104Z"
+              fill="#F1662A"
+            />
+            <path
+              d="M27 22.6243H20.0981L19.6223 17.2834H27V12.0673H13.9219L14.0468 13.4679L15.3276 27.8404H27V22.6243V22.6243Z"
+              fill="#EBEBEB"
+            />
+            <path
+              d="M27 36.1699L26.9764 36.1766L21.168 34.6089L20.7967 30.4492H15.5604L16.2911 38.637L26.9764 41.6036L27 41.5969V36.1699Z"
+              fill="#EBEBEB"
+            />
+            <path
+              d="M26.9814 22.6243V27.8404H33.4041L32.7999 34.6056L26.9814 36.1749V41.6019L37.6751 38.637L37.7528 37.7561L38.9779 24.0249L39.1061 22.6243H26.9814V22.6243Z"
+              fill="white"
+            />
+            <path
+              d="M26.9814 12.0673V17.2834H39.5803L39.6849 16.1122L39.9229 13.4679L40.0478 12.0673H26.9814V12.0673Z"
+              fill="white"
+            />
+          </svg>
+        </button>
+        <button class="menu__type css" data-no="2" onclick="setTab(this)">
+          <svg
+            width="54"
+            height="55"
+            viewBox="0 0 54 55"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.95962 46.5517L6.16949 4.025H47.8305L44.0353 46.5449L26.9747 51.275L9.95962 46.5517Z"
+              fill="#1572B6"
+            />
+            <path
+              d="M27 47.6604L40.7869 43.8382L44.0302 7.50294H27V47.6604Z"
+              fill="#33A9DC"
+            />
+            <path
+              d="M27 22.9098H33.9019L34.3777 17.5689H27V12.3528H40.0781L39.9533 13.7518L38.6724 28.1259H27V22.9098V22.9098Z"
+              fill="white"
+            />
+            <path
+              d="M27.0321 36.4554L27.0085 36.4621L21.2001 34.8928L20.8288 30.7331H15.5925L16.3232 38.9225L27.0068 41.8891L27.0321 41.8824V36.4554V36.4554Z"
+              fill="#EBEBEB"
+            />
+            <path
+              d="M33.4581 27.9048L32.8303 34.8894L27.0135 36.4588V41.8858L37.7055 38.9225L37.7848 38.0416L38.691 27.9048H33.4581V27.9048Z"
+              fill="white"
+            />
+            <path
+              d="M27.0186 12.3528V17.5689H14.4197L14.3151 16.3961L14.0771 13.7518L13.9523 12.3528H27.0186V12.3528Z"
+              fill="#EBEBEB"
+            />
+            <path
+              d="M27 22.9098V28.1259H21.2642L21.1596 26.9531L20.9233 24.3088L20.7985 22.9098H27V22.9098Z"
+              fill="#EBEBEB"
+            />
+          </svg>
+        </button>
+        <button class="menu__type" data-no="3" onclick="setTab(this)">
+          <svg
+            width="54"
+            height="55"
+            viewBox="0 0 54 55"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_3_24)">
+              <path d="M0 0.300003H54V54.3H0V0.300003Z" fill="#F7DF1E" />
+              <path
+                d="M14.1986 45.4263L18.3309 42.9254C19.1282 44.3389 19.8534 45.5349 21.593 45.5349C23.2605 45.5349 24.312 44.8827 24.312 42.3455V25.0913H29.3866V42.4173C29.3866 47.6732 26.3056 50.0656 21.8105 50.0656C17.751 50.0656 15.3947 47.9632 14.1984 45.4259"
+                fill="black"
+              />
+              <path
+                d="M32.1428 44.8825L36.2747 42.4902C37.3625 44.2665 38.7762 45.5714 41.2771 45.5714C43.3799 45.5714 44.7206 44.5201 44.7206 43.0701C44.7206 41.3303 43.3432 40.7139 41.0233 39.6993L39.755 39.1551C36.0937 37.5969 33.6652 35.6394 33.6652 31.5072C33.6652 27.701 36.5649 24.801 41.0961 24.801C44.3222 24.801 46.6421 25.9249 48.3093 28.8609L44.358 31.3985C43.4879 29.8399 42.5459 29.2238 41.0959 29.2238C39.6096 29.2238 38.6671 30.1662 38.6671 31.3985C38.6671 32.9209 39.6096 33.5374 41.7844 34.4799L43.053 35.0235C47.3666 36.8723 49.7952 38.7571 49.7952 42.9978C49.7952 47.5654 46.2067 50.0663 41.3857 50.0663C36.6736 50.0663 33.6287 47.8189 32.1426 44.8827"
+                fill="black"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_3_24">
+                <rect
+                  width="54"
+                  height="54"
+                  fill="white"
+                  transform="translate(0 0.300003)"
+                />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+        <div class="active-bar"></div>
+      </div>
+    </div>
+    <div class="title bar">.html</div>
+    <div class="form">
+      <input type="checkbox" value="autorun" id="autorun" onchange="isAutoRun=!isAutoRun" name="autorun"/>
+      <label for="autorun">AutoRun</label>
+      <button class="runner" onclick="runCode()">Run</button>
+    </div>
+    
+    <div class="codearea bar">
+      <div class="session s-html">
+        <textarea id="editorHtml" class="active-editor editor"></textarea>
+      </div>
+      <div class="session s-css">
+        <textarea id="editorCss" class="editor"></textarea>
+      </div>
+      <div class="session s-js">
+        <textarea id="editorJs" class="editor"></textarea>
+      </div>
+    </div>
+    <div class="outputbar bar">
+      <iframe frameborder="0" class="iframe"></iframe>
+    </div>
+  </body>
+</html>
