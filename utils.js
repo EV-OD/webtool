@@ -16,7 +16,7 @@ function setCode(code){
 
 function runCode(){
     let r = `${editorHtml.getValue()} 
-        <style>${editorCss.getValue()}</style>
+        <style defer>${editorCss.getValue()}</style>
         <script>${editorJs.getValue()}</script>`
     setCode(r)
 }
