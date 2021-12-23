@@ -71,7 +71,6 @@ function setTab(elt) {
     let gap_str = getComputedStyle(document.body).getPropertyValue("--menu-bar-gap")
     let tab_no = parseInt(elt.dataset.no) - 1
     let gap = gap_str.substring(0,gap_str.length - 2)
-    console.log(gap , tab_no,gap * tab_no)
 
     active_bar.style.transform = `translatey(calc(${tab_no} * 100% + ${gap * tab_no}px))`
     if(tab_no == 0){
