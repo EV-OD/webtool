@@ -12,15 +12,47 @@ function addUpCode(){
   }
 }
 
+function getAutoComplete(instance){
+    if (instance.state.completionActive) {
+      return;
+    }
+    var cur = instance.getCursor();
+    var token = instance.getTokenAt(cur);
+    if (token.type && token.type != "comment") {
+            CodeMirror.commands.autocomplete(instance);
+            let hint = document.querySelector(".CodeMirror-hints")
+            if(hint){
+              if(instance.options.mode == 'text/html'){
+                document.body.classList.add("html")
+              }else{
+                document.body.classList.add(instance.options.mode)
+              }
+            }
+    }
+}
+
+
+var commonOptions = {
+  tabSize:2,
+  extraKeys:{"Ctrl-Space":"autocomplete"},
+  lineNumbers: true,
+  styleActiveLine: { nonEmpty: true },
+  lineWrapping: true,
+  indentUnit: 2,
+  tabSize: 2,
+  highlightSelectionMatches: true,
+  activeLine: true,
+  indentWithTabs: true,
+  smartIndent: true,
+  theme:"monokai"
+
+}
+
 var editorHtml = CodeMirror.fromTextArea(document.querySelector("#editorHtml"), {
-    lineNumbers: true,
-    mode:"xml",
-    htmlMode:true,
+    mode: "text/html",
     value:"html",
-    tabSize:2,
-    extraKeys:{"Ctrl-Space":"autocomplete"},
     autoCloseTags :true,
-    theme:"dracula",
+    ...commonOptions
   })
   editorHtml.on("change",cm=>{
       htmlcode = cm.getValue()
@@ -28,31 +60,30 @@ var editorHtml = CodeMirror.fromTextArea(document.querySelector("#editorHtml"), 
       
   })
   var editorCss = CodeMirror.fromTextArea(document.querySelector("#editorCss"), {
-    lineNumbers: true,
     mode:"css",
     value:"css",
-    tabSize:2,
-    extraKeys:{"Ctrl-Space":"autocomplete"},
     autoCloseBrackets : true,
-    theme:"dracula"
+    ...commonOptions
   })
   editorCss.on("change",cm=>{
     csscode = cm.getValue()
     if(isAutoRun) addUpCode()
   })
+
+
   var editorJs = CodeMirror.fromTextArea(document.querySelector("#editorJs"), {
-    lineNumbers: true,
     mode:"javascript",
     value:"js",
-    tabSize:2,
-    extraKeys:{"Ctrl-Space":"autocomplete"},
     autoCloseBrackets :true,
-    theme:"dracula"
+    ...commonOptions
   });
   editorJs.on("change",cm=>{
     jscode = cm.getValue()
     if(isAutoRun) addUpCode()
   })
+  editorHtml.on("inputRead", getAutoComplete)
+  editorCss.on("inputRead", getAutoComplete)
+  editorJs.on("inputRead", getAutoComplete)
 
   var s_html = document.querySelector(".s-html")
   var s_css = document.querySelector(".s-css")
@@ -90,3 +121,6 @@ function setTab(elt) {
        titlebar.innerHTML = ".js"
     }
 }
+// setTimeout(()=>{
+//   debugger
+// },2000)
