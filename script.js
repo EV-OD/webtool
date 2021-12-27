@@ -1,3 +1,18 @@
+const deviceType = () => {
+  const ua = navigator.userAgent;
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return "tablet";
+  }
+  else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+      return "mobile";
+  }
+  return "desktop";
+};
+
+if(deviceType == "mobile" || deviceType == "tablet"){
+  alert("Please use desktop computer or laptop.")
+}
+
 var active_bar = document.querySelector(".active-bar")
 
 var code = ``
@@ -8,7 +23,7 @@ var isAutoRun = false
 function addUpCode(){
   code = `${htmlcode} <style>${csscode}</style><script>${jscode}</script>`
   if(isAutoRun){
-    setCode(code)
+      setCode(code)
   }
 }
 
@@ -50,7 +65,7 @@ var commonOptions = {
 
 var editorHtml = CodeMirror.fromTextArea(document.querySelector("#editorHtml"), {
     mode: "text/html",
-    value:"html",
+    value:"htmlmixed",
     autoCloseTags :true,
     ...commonOptions
   })
@@ -124,3 +139,46 @@ function setTab(elt) {
 // setTimeout(()=>{
 //   debugger
 // },2000)
+
+
+
+
+
+
+var widgets = []
+function updateHints(editor) {
+  editor.operation(function(){
+    for (var i = 0; i < widgets.length; ++i){
+      editor.removeLineWidget(widgets[i]);
+    }
+    widgets.length = 0;
+
+    JSHINT(editor.getValue());
+    for (var i = 0; i < JSHINT.errors.length; ++i) {
+      var err = JSHINT.errors[i];
+      if (!err) continue;
+      var msg = document.createElement("div");
+      var icon = msg.appendChild(document.createElement("span"));
+      icon.innerHTML = "!!";
+      icon.className = "lint-error-icon";
+      msg.appendChild(document.createTextNode(err.reason));
+      msg.className = "lint-error";
+      widgets.push(editor.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
+      const marker = ()=>{
+        var marker = document.createElement("div");
+        marker.style.color = "#822";
+        marker.innerHTML = "●";
+        return marker;
+      }
+      editor.setGutterMarker(err.line, "replacement", marker());
+    }
+  });
+  var info = editor.getScrollInfo();
+  var after = editor.charCoords({line: editor.getCursor().line + 1, ch: 0}, "local").top;
+  if (info.top + info.clientHeight < after)
+    editor.scrollTo(null, after - info.clientHeight + 3);
+}
+
+
+
+

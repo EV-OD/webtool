@@ -16,7 +16,7 @@
     <script src="lib/mode/htmlmixed.js"></script>
     <script src="lib/mode/activeLineStyle.js"></script>
 
-
+    <script src="lib/mode/jshint.js"></script>
     <script src="lib/mode/show-hint.js"></script>
 
     <link rel="stylesheet" href="lib/mode/show-hint.css">
@@ -34,6 +34,9 @@
 
     <script defer src="script.js"></script>
     <script defer src="utils.js"></script>
+    <script src="examples.js"></script>
+
+    <script src="jscode.js"></script>
 
   </head>
   <body>
@@ -163,9 +166,16 @@
       <div class="session s-js">
         <textarea id="editorJs" class="editor"></textarea>
       </div>
+      <div class="status"></div>
     </div>
     <div class="outputbar bar">
       <iframe frameborder="0" class="iframe"></iframe>
+      <div class="after"></div>
+    </div>
+    <div class="examples" tabindex="1">
+      <span>Examples </span>
+      <div class="icon"><i class="fas fa-sort-down"></i></div>
+      <ul class="menu">
     </div>
   </body>
 </html>
