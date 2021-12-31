@@ -8,6 +8,9 @@
     --gap: 10px;
     --seperator-gap: 7px;
     --menu-bar-gap: 15px;
+    --output-width: 0px;
+    --filebar-width:60px;
+
 }
 
 body {
@@ -16,8 +19,7 @@ body {
     display: grid;
     background-color: #333333;
     color: white;
-
-    grid-template-columns: 60px 1.25fr 1fr;
+    grid-template-columns: var(--filebar-width) var(--code-width) var(--output-width);
     grid-template-rows: 45px 1fr;
     gap: var(--gap);
 }
@@ -65,6 +67,7 @@ body {
     overflow: auto;
     top: 100%;
     left: 0;
+    z-index: 100;
     width: 150px;
     transition: height 0.2s ease-in-out;
     padding-left: 0;
@@ -123,6 +126,7 @@ body {
     grid-row: 2 / 3;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
+    overflow: visible;
 }
 
 .form {
@@ -337,10 +341,72 @@ body {
     background-color: rgb(245, 81, 81);
 }
 
+.error-marker {
+    color: black;
+  }
   
+  .error-marker .error-message {
+    display: none;
+    position: absolute;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 5px;
+    padding: 2px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #545252;
+    left: 15px;
+    top: -1em;
+  }
   
-  
+  .error-marker:hover .error-message {
+    display: block;
+  }
+  .error-marker svg{
+      width: 12px;
+      margin-left: 3px;
+  }
+  .error-marker svg path{
+      fill: #ff9e00;
+  }
+  .resizer{
+    position: absolute;
+    width: 10px;
+    right: -10px;
+    height: 88%;
+    top: 0;
+    background: #7aa9ff;
+    cursor: ew-resize;
+  }
 
+  @media only screen and (max-width:740px) {
+      .examples{
+        margin-inline-end: 20px;
+      }
+      .title{
+          display: none;
+      }
+      .resizer{
+          display: none;
+      }
+      .form label,.form input[type=checkbox]{
+          display: none;
+      }
+      .form button{
+        margin-left: -20px;
+      }
+      :root{
+        --filebar-width: 40px;
+      }
+      .filebar{
+          border-radius: 4px;
+      }
+      .filebar svg{
+          width: 25px;
+          height: 25px;
+          transform: translateX(-3.5px);
+      }
+  }
 /* .html .CodeMirror-hints li::before{
     content: "";
 }
