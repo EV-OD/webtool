@@ -12,7 +12,12 @@ const deviceType = () => {
 if(deviceType == "mobile" || deviceType == "tablet"){
   alert("Please use desktop computer or laptop.")
 }
-
+function handleCheck(){
+  isAutoRun != isAutoRun
+  code = `${htmlcode} <style>${csscode}</style><script>${jscode}</script>`
+  setCode(code)
+  
+}
 var active_bar = document.querySelector(".active-bar")
 
 var code = ``
@@ -90,15 +95,39 @@ var editorHtml = CodeMirror.fromTextArea(document.querySelector("#editorHtml"), 
     mode:"javascript",
     value:"js",
     autoCloseBrackets :true,
+    gutters: ['error'],
     ...commonOptions
   });
   editorJs.on("change",cm=>{
     jscode = cm.getValue()
+    JSHINT(jscode);
+      const errors = Array.isArray(JSHINT.errors) ? JSHINT.errors : [];
+      editorJs.clearGutter('error');
+      for (const error of errors) {
+        editorJs.setGutterMarker(error.line - 1, 'error', makeMarker(error.reason));
+      }
     if(isAutoRun) addUpCode()
   })
+  function makeMarker(msg) {
+    const marker = document.createElement('div');
+    marker.classList.add('error-marker');
+    marker.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+  
+    const error = document.createElement('div');
+    error.innerHTML = msg;
+    error.classList.add('error-message');
+    marker.appendChild(error);
+  
+    return marker;
+  }
+
   editorHtml.on("inputRead", getAutoComplete)
   editorCss.on("inputRead", getAutoComplete)
   editorJs.on("inputRead", getAutoComplete)
+
+  emmetCodeMirror(editorHtml);
+  emmetCodeMirror(editorCss);
+  emmetCodeMirror(editorJs);
 
   var s_html = document.querySelector(".s-html")
   var s_css = document.querySelector(".s-css")
