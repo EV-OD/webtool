@@ -407,12 +407,3 @@ body {
           transform: translateX(-3.5px);
       }
   }
-/* .html .CodeMirror-hints li::before{
-    content: "";
-}
-.css .CodeMirror-hints li::before{
-    content: "{}";
-}
-.js .CodeMirror-hints li::before{
-    content: "[]";
-} */
