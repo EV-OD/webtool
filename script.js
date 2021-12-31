@@ -14,7 +14,7 @@ if(deviceType == "mobile" || deviceType == "tablet"){
 }
 function handleCheck(){
   isAutoRun != isAutoRun
-  code = `${htmlcode} <style>${csscode}</style><script>${jscode}</script>`
+  code = `${htmlcode} <style>${csscode}</style><script defer>${jscode}</script>`
   setCode(code)
   
 }
@@ -26,7 +26,7 @@ var csscode = ``
 var jscode = ``
 var isAutoRun = false
 function addUpCode(){
-  code = `${htmlcode} <style>${csscode}</style><script>${jscode}</script>`
+  code = `${htmlcode} <style>${csscode}</style><script defer>${jscode}</script>`
   if(isAutoRun){
       setCode(code)
   }
