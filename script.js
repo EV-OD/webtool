@@ -13,7 +13,7 @@ if(deviceType == "mobile" || deviceType == "tablet"){
   alert("Please use desktop computer or laptop.")
 }
 function handleCheck(){
-  isAutoRun != isAutoRun
+  isAutoRun = !isAutoRun
   code = `${htmlcode} <style>${csscode}</style><script defer>${jscode}</script>`
   setCode(code)
   
