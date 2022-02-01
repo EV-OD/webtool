@@ -165,7 +165,49 @@ var codes = {
             document.write(i + "</br>")
           }
         `
-    }
+    },
+"while-loop":{
+        template:true,
+        code:`
+          var x = 0;
+          while (x!=5){
+            document.write(x + "<br/>")
+            x++;
+          }
+        `
+
+    },
+"do-while-loop":{
+        template:true,
+        code:`
+          var x = 0;
+          do{
+            document.write(x + "<br/>")
+            x++;
+          }while (x!=5)
+        `
+
+    },
+    array:{
+      template:true,
+      code:`
+      var y = [4,3,7];
+      document.write(y + "<br/>");
+      var dons = ["Rabin", "Sugam", "Kirtan","Rohit","Atul","deekshit"];
+      document.write(dons)
+      `
+    },
+    "Accessing Array":{
+      template:true,
+      code:`
+
+        var dons = ["Rabin", "Sugam", "Kirtan","Rohit","Atul","deekshit"];
+        document.write(dons[0] + "<br/>");
+        document.write(dons[2] + "<br/>") 
+      `
+
+    },
+    
 }
 // "variable":{
 //     template:true,

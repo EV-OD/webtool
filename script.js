@@ -64,7 +64,7 @@ var commonOptions = {
   activeLine: true,
   indentWithTabs: true,
   smartIndent: true,
-  theme:"monokai"
+  theme:"vscode-dark"
 
 }
 
